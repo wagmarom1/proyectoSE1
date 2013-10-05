@@ -17,6 +17,13 @@ public:
     
 private:
     Ui::MainWindow *ui;
+
+public slots:
+    void OnSelectSong();
+    void OnBtnLastPressed();
+    void OnBtnPlayStopPressed();
+    void OnBtnNextPressed();
+
 };
 
 #endif // MAINWINDOW_H
