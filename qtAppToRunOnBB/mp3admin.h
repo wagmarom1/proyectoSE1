@@ -3,25 +3,41 @@
 #include <QString>
 #include <gst/gst.h>
 #include <glib.h>
+#include <QVector>
 #include <QFileDialog>
 
 class mp3Admin
 {
 
-    QFileInfoList _pathList; //
 
-public:
-    mp3Admin();
-    void playStopSong(bool isRemote, QString actualSongPath, QString ip, int _portNumber);
+    public:
 
-    void setPathList(QFileInfoList list);     //
-    QFileInfoList getPathList();              //
-    QString getPreviewPath(QString actualPath); //
-    QString getNextPath(QString actualPath);  //
+        QFileInfoList _pathList; //
+        static bool _play;
 
-private:
-    static gboolean bus_call (GstBus *bus, GstMessage *msg, gpointer data);
-    QString getPrevOrNextPath(QString actualPath, int moveCount); //
+        mp3Admin();
+        void playStopSong(bool isRemote, QString actualSongPath, QString ip, int _portNumber);
+        bool getPlayFlag();
+        void setPlayFlag(bool value);
+        void pauseLocalSong();
+        void pauseRemoteSong(int indexPipeline);
+        void stopRemoteSong(int indexPipeline);       
+
+        void setPathList(QFileInfoList list);
+        QFileInfoList getPathList();
+        QString getPreviewPath(QString actualPath);
+        QString getNextPath(QString actualPath);
+
+
+    private:
+
+        GstElement *pipelineLocal;
+        QVector<GstElement**> listPipelines;
+        static gboolean bus_call (GstBus *bus, GstMessage *msg, gpointer data);
+        static gboolean timeout_callback(gpointer data);
+
+        QString getPrevOrNextPath(QString actualPath, int moveCount);
+
 };
 
 #endif // MP3ADMIN_H

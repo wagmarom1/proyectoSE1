@@ -1,19 +1,27 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QFileDialog>  //
-#include <QDir>         //
-#include <iostream>
-#include <QMessageBox> //
+#include <QFileDialog>
 #include "mp3admin.h"
+#include <QDir>
+#include <iostream>
+#include <QMessageBox>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->move(400,100);
+    this->move(0,0);
     //Set some graphical details
     ui->LabelTile->setText("<font color='green'>BB MP3 player</font>");
+    ui->listWidget->addItem("Local");
+    ui->volumeSlider->setValue(50);
+    names.append("Local");
+    system(" amixer sset 'DAC1 Digital Fine' 50");
+    system("amixer sset 'Headset' 2 ");
+    system("amixer sset 'HeadsetL Mixer AudioL1' on");
+    system("amixer sset 'HeadsetL Mixer AudioR1' on");
 }
 
 MainWindow::~MainWindow()
@@ -36,29 +44,9 @@ void MainWindow::OnSelectSong()
     QStringList filter;
     filter << "*.mp3" ;
     dir.setNameFilters(filter);       //Se filtran los archivos mp3
-    QFileInfoList list = dir.entryInfoList();   //
+    QFileInfoList list = dir.entryInfoList();   // lista los archivos
     _mp3Admin->setPathList(list);
-}
 
-void MainWindow::OnBtnPlayStopPressed()
-{
-    QString songPath = ui->TextPath->toPlainText(),
-            ip = ui->TextIp->toPlainText();
-
-    //Conver Qstring of portNumber to char* for atoi function
-    QByteArray ba = ui->TextPort->toPlainText().toLatin1();
-    const char *portNumberInChar = ba.data();
-
-    int portNumber = (strcmp(portNumberInChar,"") == 0)? atoi(portNumberInChar) : 0;
-
-    if( songPath != "" &&  ip!= "" && portNumber != 0 && ui->cBRemotaMnt->isChecked() )
-    {
-        _mp3Admin->playStopSong(true, songPath, ip, portNumber);  //UDP remote playing
-    }
-    else if(songPath != "")
-    {
-        _mp3Admin->playStopSong(false, songPath, "", 0);  // Normal Local playing
-    }
 }
 
 void MainWindow::OnBtnPreviewPressed()
@@ -83,8 +71,106 @@ void MainWindow::ChangeSongPath(bool isNext)
     else
     {
         QMessageBox Msgbox;
-        Msgbox.setText("No mas archivos");
+        Msgbox.setText("No hay mas archivos...");
         Msgbox.exec();
     }
 }
 
+void MainWindow::OnBtnPlayStopPressed()
+{
+    // Obtener el indice seleccionado
+    QModelIndex m_activedIndex = ui->listWidget->currentIndex();
+    int  selectedIndex = m_activedIndex.row();
+    g_print("Selected Index: %i \n", selectedIndex);
+
+    if(selectedIndex == -1)
+    {
+        g_print("YOU HAVE TO SELECT AN INDEX\n");
+    }
+    else if(selectedIndex == 0) //Local
+    {
+
+        if(_mp3Admin->getPlayFlag()){
+            // haga el stop
+             _mp3Admin->setPlayFlag(false); //El timeout_callback? detiene la cancion
+             g_print ("STOP\n");
+        }
+        else
+        {
+            //haga play
+
+            g_print ("PLAY LOCAL\n");
+            QString songPath = ui->TextPath->toPlainText();
+
+            if(songPath != "")
+            {
+                _mp3Admin->setPlayFlag(true);
+                _mp3Admin->playStopSong(false, songPath, "", 0);  // Normal Local playing
+            }
+        }
+    }
+    else //remoto
+    {
+         g_print ("Entra a remoto\n");
+        _mp3Admin->stopRemoteSong(selectedIndex - 1);
+    }
+}
+
+
+void MainWindow::on_pauseButton_clicked()
+{
+    QModelIndex m_activedIndex = ui->listWidget->currentIndex();
+    int  selectedIndex = m_activedIndex.row();
+    g_print("Selected Index: %i \n", selectedIndex);
+    if(selectedIndex == -1)
+    {
+        g_print("YOU HAVE TO SELECT AN INDEX\n");
+    }
+    else if(selectedIndex == 0)
+    {
+        _mp3Admin->pauseLocalSong();
+    }
+    else
+    {
+         _mp3Admin->pauseRemoteSong(selectedIndex -1);
+    }
+}
+
+void MainWindow::on_listWidget_itemSelectionChanged()
+{
+    QModelIndex m_activedIndex = ui->listWidget->currentIndex();
+    int  selectedIndex = m_activedIndex.row();
+    g_print("Selected Index: %i \n", selectedIndex);
+    QString control = names[selectedIndex];
+    ui->LabelTile_6->setText(control);
+}
+
+void MainWindow::on_BtnAddRemote_clicked()
+{
+    g_print ("ADD REMOTE\n");
+    QString songPath = ui->TextPath->toPlainText(),
+            ip = ui->TextIp->toPlainText(),
+            nameRemote = ui->TextName->toPlainText();
+
+    //Conver Qstring of portNumber to char* for atoi function
+    QByteArray ba = ui->TextPort->toPlainText().toLatin1();
+    const char *portNumberInChar = ba.data();
+
+    int portNumber = (strcmp(portNumberInChar,"")!=0)? atoi(portNumberInChar) : 0;
+
+    if( songPath != "" &&  ip!= "" && portNumber != 0 && ui->cBRemotaMnt->isChecked() && nameRemote != "")
+    {
+        names.append(nameRemote);
+        ui->listWidget->addItem(nameRemote + " " + ip + ":" + QString::number(portNumber));
+        _mp3Admin->playStopSong(true, songPath, ip, portNumber);  //UDP remote playing
+    }
+}
+
+void MainWindow::on_volumeSlider_sliderPressed()
+{
+    int value = ui->volumeSlider->value();
+    QString cmd = " amixer sset 'DAC1 Digital Fine' " + value;
+    QByteArray bb = cmd.toLatin1();
+    const char *Alsacmd = bb.data();
+    system(Alsacmd);
+}

@@ -1,50 +1,62 @@
 #include "mp3admin.h"
 #include <gst/gst.h>
 #include <glib.h>
-#include <QFileDialog>
+
+bool mp3Admin::_play = false;
 
 mp3Admin::mp3Admin()
 {
 }
 
+ bool mp3Admin::getPlayFlag()
+ {
+    return _play;
+ }
 
-void mp3Admin::setPathList(QFileInfoList list)   //
-{
-    _pathList = list;
-}
+ void mp3Admin::setPlayFlag(bool value)
+ {
+     _play = value;
+ }
 
-QFileInfoList mp3Admin::getPathList()       //
-{
-    return _pathList;
-}
+ void mp3Admin::setPathList(QFileInfoList list)   //
+ {
+     _pathList = list;
+ }
 
-QString mp3Admin::getNextPath(QString actualPath)
-{
-    return getPrevOrNextPath(actualPath, 1);
-}
+ QFileInfoList mp3Admin::getPathList()       //
+ {
+     return _pathList;
+ }
 
-QString mp3Admin::getPreviewPath(QString actualPath)
-{
-    return getPrevOrNextPath(actualPath, -1);
-}
+ QString mp3Admin::getNextPath(QString actualPath)
+ {
+     return getPrevOrNextPath(actualPath, 1);
+ }
 
-QString mp3Admin::getPrevOrNextPath(QString actualPath, int moveCount)
-{
-    //  Armar QFileInfo del actualPath para buscarlo en la lista de paths
-    QFileInfo actualPathInfo(actualPath);
-    // Busarlo
-    int indexActualPath = _pathList.indexOf(actualPathInfo);
-    // Retornar el siguiente path
-    QString returnPath = (0 <= (indexActualPath+moveCount) && (indexActualPath+moveCount) < _pathList.count())? _pathList.at(indexActualPath+moveCount).filePath() : "END";
+ QString mp3Admin::getPreviewPath(QString actualPath)
+ {
+     return getPrevOrNextPath(actualPath, -1);
+ }
 
-    QByteArray bb = returnPath.toLatin1();
-    const char *ss = bb.data();
+ QString mp3Admin::getPrevOrNextPath(QString actualPath, int moveCount)
+ {
+     //  Armar QFileInfo del actualPath para buscarlo en la lista de paths
+     QFileInfo actualPathInfo(actualPath);
+     // Busarlo
+     int indexActualPath = _pathList.indexOf(actualPathInfo);
+     // Retornar el siguiente path
+     QString returnPath = (0 <= (indexActualPath+moveCount) && (indexActualPath+moveCount) < _pathList.count())? _pathList.at(indexActualPath+moveCount).filePath() : "END";
 
-    printf("returned path is: %s", ss);
-    return returnPath;
-}
+     QByteArray bb = returnPath.toLatin1();
+     const char *ss = bb.data();
+
+     printf("returned path is: %s", ss);
+     return returnPath;
+ }
 
 
+
+//----------------------------------------------------------LOGICA DE GSTREAMER------------------------------------
 extern "C" void bus_call (GstBus *bus, GstMessage *msg, gpointer data);
 gboolean mp3Admin::bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 {
@@ -79,26 +91,88 @@ gboolean mp3Admin::bus_call (GstBus *bus, GstMessage *msg, gpointer data)
     return TRUE;
 }
 
+extern "C" gboolean timeout_callback(gpointer data);
+gboolean mp3Admin::timeout_callback(gpointer data)
+{
+    if (_play == false)
+    {
+        g_main_loop_quit((GMainLoop*)data);
+        return FALSE;
+    }
 
-//##########################################################################
-// This program plays a OGG file
-// Copyright (C) 2013  Elias Mendez Chacon, Wagner Martinez Romero, Wilbeth Cespedes
-// Code taken from http://gstreamer.freedesktop.org/data/doc/gstreamer/head/manual/html/chapter-helloworld.html
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <http://www.gnu.org/licenses/>.
-//
-//#########################################################################
+    return TRUE;
+}
+
+extern "C" void stopRemoteSong();
+void mp3Admin::stopRemoteSong(int indexPipeline)
+{
+    GstElement *pipeline = * listPipelines[indexPipeline];
+    g_print ("REMOTE\n");
+    GstState state;
+    gst_element_get_state(pipeline, &state, NULL, GST_CLOCK_TIME_NONE);
+g_print ("REMOTE\n");
+    if (state == GST_STATE_PLAYING)
+    {
+        gst_element_set_state( pipeline, GST_STATE_NULL);
+    }
+    else
+    {
+        gst_element_set_state (pipeline, GST_STATE_PLAYING);
+    }
+    if (gst_element_get_state (pipeline, NULL, NULL, 0) != GST_STATE_CHANGE_SUCCESS)
+    {
+      printf( "Gstreamer: change state failed!!!\n");
+      return;
+    }
+}
+
+extern "C" void pauseRemoteSong();
+void mp3Admin::pauseRemoteSong(int indexPipeline)
+{
+    GstElement *pipeline = * listPipelines[indexPipeline];
+    g_print ("REMOTE\n");
+    GstState state;
+    gst_element_get_state(pipeline, &state, NULL, GST_CLOCK_TIME_NONE);
+g_print ("REMOTE\n");
+    if (state == GST_STATE_PLAYING)
+    {
+        gst_element_set_state( pipeline, GST_STATE_PAUSED);
+    }
+    else
+    {
+        gst_element_set_state (pipeline, GST_STATE_PLAYING);
+    }
+    if (gst_element_get_state (pipeline, NULL, NULL, 0) != GST_STATE_CHANGE_SUCCESS)
+    {
+      printf( "Gstreamer: change state failed!!!\n");
+      return;
+    }
+}
+
+extern "C" void pauseLocalSong();
+void mp3Admin::pauseLocalSong()
+{
+    if (_play == true)
+    {
+        GstState state;
+        gst_element_get_state( pipelineLocal, &state, NULL, GST_CLOCK_TIME_NONE);
+
+        if (state == GST_STATE_PLAYING)
+        {
+            gst_element_set_state( pipelineLocal, GST_STATE_PAUSED);
+        }
+        else
+        {
+            gst_element_set_state (pipelineLocal, GST_STATE_PLAYING);
+        }
+        if (gst_element_get_state (pipelineLocal, NULL, NULL, 0) != GST_STATE_CHANGE_SUCCESS)
+        {
+          printf( "Gstreamer: change state failed!!!\n");
+          return;
+        }
+    }
+}
+
 extern "C" void playStopSong(bool isRemote);
 void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, int _portNumber)
 {
@@ -111,7 +185,6 @@ void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, i
     printf("songPath: %s \n", _actualSongPath);
     printf("ip: %s \n", _ip);
     printf("portNumber: %i \n", _portNumber);
-    printf("ip: %b \n", isRemote);
 
     if(isRemote){
         //Poner codigo udp -- parametro (nombre puerto ip)
@@ -122,16 +195,16 @@ void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, i
 
             g_print ("Create elements of the pipeline");
 
-            GstElement *pipeline, *inputfile, *decoder, *converter, *resampler, *encoder, *rtp, *sink;
+            GstElement *pipelineRemote, *inputfile, *decoder, *converter, *resampler, *encoder, *rtp, *sink;
             GstBus *bus;
-
+            listPipelines.append(&pipelineRemote);
             /* Initialisation */
             gst_init (NULL, FALSE);
 
             loop = g_main_loop_new (NULL, FALSE);
 
             /* Create gstreamer elements */
-            pipeline = gst_pipeline_new("pipeline");
+            pipelineRemote = gst_pipeline_new("pipeline");
 
             inputfile = gst_element_factory_make("filesrc", "inputfile");
             g_object_set(G_OBJECT(inputfile), "location", _actualSongPath, NULL);
@@ -147,18 +220,18 @@ void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, i
 
             g_print ("Create elements of the pipeline\n");
 
-            bus = gst_pipeline_get_bus(GST_PIPELINE(pipeline));
+            bus = gst_pipeline_get_bus(GST_PIPELINE(pipelineRemote));
             gst_bus_add_watch(bus, bus_call, NULL);
             g_print ("Bus Callback\n");
 
-            gst_bin_add_many(GST_BIN(pipeline), inputfile, decoder, converter, resampler, encoder, rtp, sink, NULL);
+            gst_bin_add_many(GST_BIN(pipelineRemote), inputfile, decoder, converter, resampler, encoder, rtp, sink, NULL);
             g_print ("Pipeline created\n");
 
             gst_element_link_many(inputfile, decoder, converter,
             resampler, encoder, rtp, sink, NULL);
             g_print ("Linking the elements\n");
 
-            gst_element_set_state(GST_ELEMENT(pipeline), GST_STATE_PLAYING);
+            gst_element_set_state(GST_ELEMENT(pipelineRemote), GST_STATE_PLAYING);
             g_print ("Start sending Stream\n");
             g_main_loop_run(loop);
             g_print ("End sending Stream\n");
@@ -166,10 +239,10 @@ void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, i
     else{
         //Poner codigo normal
         printf("ip: %s \n", "Entro en local");
-
+        printf("songPath 2: %s\n", _actualSongPath);
         GMainLoop *loop;
 
-            GstElement *pipeline, *source, *decoder, *conv, *resample, *sink;
+            GstElement *source, *decoder, *conv, *resample, *sink;
             GstBus *bus;
 
             /* Initialisation */
@@ -177,31 +250,32 @@ void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, i
             loop = g_main_loop_new (NULL, FALSE);
 
             /* Create gstreamer elements */
-            pipeline = gst_pipeline_new ("audio-player");
+            pipelineLocal = gst_pipeline_new ("audio-player");
             source  = gst_element_factory_make ("filesrc",      "file-source");
             decoder  = gst_element_factory_make ("mad",      "mp3-decoder");
             conv    = gst_element_factory_make ("audioconvert",  "converter");
             resample = gst_element_factory_make ("audioresample", "audio-resample");
             sink    = gst_element_factory_make ("autoaudiosink", "audio-output");
 
-            if (!pipeline || !source || !decoder || !conv || !resample || !sink) {
+            if (!pipelineLocal || !source || !decoder || !conv || !resample || !sink) {
                 g_printerr ("One element could not be created. Exiting.\n");
             }
             else
             {
+                printf("songPath 3: %s \n", _actualSongPath);
                 /* Set up the pipeline */
 
                 /* we set the input filename to the source element */
                 g_object_set (G_OBJECT (source), "location", _actualSongPath, NULL);
 
                 /* we add a message handler */
-                bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
+                bus = gst_pipeline_get_bus (GST_PIPELINE (pipelineLocal));
                 gst_bus_add_watch (bus, bus_call, loop);
                 gst_object_unref (bus);
 
                 /* we add all elements into the pipeline */
                 /* file-source | mp3-decoder | converter | resample | alsa-output */
-                gst_bin_add_many (GST_BIN (pipeline), source, decoder, conv, resample, sink, NULL);
+                gst_bin_add_many (GST_BIN (pipelineLocal), source, decoder, conv, resample, sink, NULL);
 
                 /* we link the elements together */
                 /* file-source -> mp3-decoder -> converter -> resample -> alsa-output */
@@ -209,17 +283,18 @@ void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, i
 
                 /* Set the pipeline to "playing" state*/
                 g_print ("Now playing: %s\n", _actualSongPath);
-                gst_element_set_state (pipeline, GST_STATE_PLAYING);
+                gst_element_set_state (pipelineLocal, GST_STATE_PLAYING);
 
                 /* Iterate */
                 g_print ("Running...\n");
+                g_timeout_add (100 , timeout_callback , loop);
                 g_main_loop_run (loop);
 
                 /* Out of the main loop, clean up nicely */
-                g_print ("Returned, stopping playback\n");
-                gst_element_set_state (pipeline, GST_STATE_NULL);
+                g_print ("Returned, playping playback\n");
+                gst_element_set_state (pipelineLocal, GST_STATE_NULL);
                 g_print ("Deleting pipeline\n");
-                gst_object_unref (GST_OBJECT (pipeline));
+                gst_object_unref (GST_OBJECT (pipelineLocal));
             }
     }
 }

@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
 #include "mp3admin.h"
-
 namespace Ui {
 class MainWindow;
 }
@@ -20,6 +20,7 @@ public:
     
 private:
     Ui::MainWindow *ui;
+      QVector<QString> names;
 
 private slots:
     void OnSelectSong();
@@ -28,6 +29,11 @@ private slots:
     void OnBtnNextPressed();
     void ChangeSongPath(bool isNext);
 
+    void on_pauseButton_clicked();
+    void on_BtnAddRemote_clicked();
+    void on_listWidget_itemSelectionChanged();
+
+    void on_volumeSlider_sliderPressed();
 };
 
 #endif // MAINWINDOW_H
