@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>569</width>
+    <width>574</width>
     <height>373</height>
    </rect>
   </property>
@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>80</y>
+      <y>60</y>
       <width>371</width>
-      <height>31</height>
+      <height>51</height>
      </rect>
     </property>
    </widget>
@@ -64,21 +64,21 @@
    <widget class="QPushButton" name="BtnLast">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>160</y>
+      <x>30</x>
+      <y>190</y>
       <width>98</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Last</string>
+     <string>&lt;&lt; Prev</string>
     </property>
    </widget>
    <widget class="QPushButton" name="BtnPlayStop">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>160</y>
+      <x>240</x>
+      <y>190</y>
       <width>98</width>
       <height>31</height>
      </rect>
@@ -90,14 +90,71 @@
    <widget class="QPushButton" name="BtnNext">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>160</y>
+      <x>430</x>
+      <y>190</y>
       <width>98</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Next</string>
+     <string>Next &gt;&gt;</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cBRemotaMnt">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>130</y>
+      <width>211</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reproducir remotamente</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="TextIp">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>130</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="TextPort">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>130</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LabelTile_2">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>130</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>FreeMono</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>:</string>
     </property>
    </widget>
   </widget>
@@ -106,7 +163,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>569</width>
+     <width>574</width>
      <height>25</height>
     </rect>
    </property>
@@ -131,8 +188,8 @@
    <slot>OnSelectSong()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>416</x>
-     <y>132</y>
+     <x>420</x>
+     <y>148</y>
     </hint>
     <hint type="destinationlabel">
      <x>418</x>
@@ -140,8 +197,59 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>BtnPlayStop</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>OnBtnPlayStopPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>275</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>269</x>
+     <y>305</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>BtnLast</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>OnBtnPreviewPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>52</x>
+     <y>245</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>52</x>
+     <y>297</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>BtnNext</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>OnBtnNextPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>488</x>
+     <y>241</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>491</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>OnSelectSong()</slot>
+  <slot>OnBtnPlayStopPressed()</slot>
+  <slot>OnBtnPreviewPressed()</slot>
+  <slot>OnBtnNextPressed()</slot>
  </slots>
 </ui>

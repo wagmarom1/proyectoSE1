@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "mp3admin.h"
 
 namespace Ui {
 class MainWindow;
@@ -10,6 +11,8 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+    mp3Admin* _mp3Admin;
     
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -18,11 +21,12 @@ public:
 private:
     Ui::MainWindow *ui;
 
-public slots:
+private slots:
     void OnSelectSong();
-    void OnBtnLastPressed();
+    void OnBtnPreviewPressed();
     void OnBtnPlayStopPressed();
     void OnBtnNextPressed();
+    void ChangeSongPath(bool isNext);
 
 };
 
