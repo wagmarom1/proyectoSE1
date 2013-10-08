@@ -24,9 +24,9 @@ private:
 
 private slots:
     void OnSelectSong();
-    void OnBtnPreviewPressed();
     void OnBtnPlayStopPressed();
-    void OnBtnNextPressed();
+    void on_BtnPrev_clicked();
+    void on_BtnNext_clicked();
     void ChangeSongPath(bool isNext);
 
     void on_pauseButton_clicked();
@@ -34,6 +34,7 @@ private slots:
     void on_listWidget_itemSelectionChanged();
 
     void on_volumeSlider_sliderPressed();
+
 };
 
 #endif // MAINWINDOW_H

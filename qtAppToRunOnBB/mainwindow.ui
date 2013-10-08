@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>717</height>
+    <width>821</width>
+    <height>662</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>30</x>
       <y>70</y>
       <width>541</width>
-      <height>41</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -36,7 +36,7 @@
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>70</y>
+      <y>80</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -78,11 +78,11 @@
      <string>BB MP3 player</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="BtnLast">
+   <widget class="QPushButton" name="BtnPrev">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>570</y>
+      <y>500</y>
       <width>151</width>
       <height>51</height>
      </rect>
@@ -96,14 +96,14 @@
      </font>
     </property>
     <property name="text">
-     <string>Last</string>
+     <string>&lt;&lt; Last</string>
     </property>
    </widget>
    <widget class="QPushButton" name="BtnPlayStop">
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>210</y>
+      <y>330</y>
       <width>221</width>
       <height>61</height>
      </rect>
@@ -123,9 +123,9 @@
    <widget class="QPushButton" name="BtnNext">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>570</y>
-      <width>151</width>
+      <x>590</x>
+      <y>500</y>
+      <width>161</width>
       <height>51</height>
      </rect>
     </property>
@@ -138,15 +138,15 @@
      </font>
     </property>
     <property name="text">
-     <string>Next</string>
+     <string>Next &gt;&gt;</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cBRemotaMnt">
+   <widget class="QTextEdit" name="TextIp">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>130</y>
-      <width>251</width>
+      <y>190</y>
+      <width>161</width>
       <height>41</height>
      </rect>
     </property>
@@ -158,35 +158,30 @@
       <bold>true</bold>
      </font>
     </property>
-    <property name="text">
-     <string>Reproducir remotamente</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="TextIp">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>140</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
    </widget>
    <widget class="QTextEdit" name="TextPort">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>140</y>
+      <x>220</x>
+      <y>190</y>
       <width>91</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
     </property>
    </widget>
    <widget class="QLabel" name="LabelTile_2">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>140</y>
+      <x>200</x>
+      <y>190</y>
       <width>21</width>
       <height>31</height>
      </rect>
@@ -210,7 +205,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>290</y>
+      <y>410</y>
       <width>131</width>
       <height>51</height>
      </rect>
@@ -231,7 +226,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-10</y>
+      <y>60</y>
       <width>821</width>
       <height>671</height>
      </rect>
@@ -246,8 +241,8 @@
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>190</y>
+      <x>30</x>
+      <y>310</y>
       <width>411</width>
       <height>161</height>
      </rect>
@@ -264,19 +259,27 @@
    <widget class="QTextEdit" name="TextName">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>140</y>
+      <x>330</x>
+      <y>190</y>
       <width>101</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
     </property>
    </widget>
    <widget class="QLabel" name="LabelTile_3">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>100</y>
-      <width>411</width>
+      <x>40</x>
+      <y>150</y>
+      <width>101</width>
       <height>51</height>
      </rect>
     </property>
@@ -299,9 +302,9 @@
    <widget class="QLabel" name="LabelTile_4">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>100</y>
-      <width>411</width>
+      <x>220</x>
+      <y>150</y>
+      <width>81</width>
       <height>51</height>
      </rect>
     </property>
@@ -324,9 +327,9 @@
    <widget class="QLabel" name="LabelTile_5">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>100</y>
-      <width>411</width>
+      <x>330</x>
+      <y>150</y>
+      <width>71</width>
       <height>51</height>
      </rect>
     </property>
@@ -349,11 +352,19 @@
    <widget class="QPushButton" name="BtnAddRemote">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>140</y>
-      <width>98</width>
-      <height>27</height>
+      <x>470</x>
+      <y>180</y>
+      <width>171</width>
+      <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>22</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Add Remote</string>
@@ -388,7 +399,7 @@
     <property name="geometry">
      <rect>
       <x>740</x>
-      <y>220</y>
+      <y>320</y>
       <width>29</width>
       <height>160</height>
      </rect>
@@ -407,7 +418,7 @@
     <property name="geometry">
      <rect>
       <x>720</x>
-      <y>200</y>
+      <y>300</y>
       <width>66</width>
       <height>17</height>
      </rect>
@@ -425,10 +436,9 @@
    <zorder>TextPath</zorder>
    <zorder>BtnSelectSong</zorder>
    <zorder>LabelTile</zorder>
-   <zorder>BtnLast</zorder>
+   <zorder>BtnPrev</zorder>
    <zorder>BtnPlayStop</zorder>
    <zorder>BtnNext</zorder>
-   <zorder>cBRemotaMnt</zorder>
    <zorder>TextIp</zorder>
    <zorder>TextPort</zorder>
    <zorder>LabelTile_2</zorder>
@@ -448,7 +458,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>821</width>
      <height>25</height>
     </rect>
    </property>
@@ -490,7 +500,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>470</x>
-     <y>253</y>
+     <y>411</y>
     </hint>
     <hint type="destinationlabel">
      <x>269</x>

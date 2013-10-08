@@ -49,12 +49,12 @@ void MainWindow::OnSelectSong()
 
 }
 
-void MainWindow::OnBtnPreviewPressed()
+void MainWindow::on_BtnPrev_clicked()
 {
     ChangeSongPath(false);
 }
 
-void MainWindow::OnBtnNextPressed()
+void MainWindow::on_BtnNext_clicked()
 {
     ChangeSongPath(true);
 }
@@ -156,9 +156,13 @@ void MainWindow::on_BtnAddRemote_clicked()
     QByteArray ba = ui->TextPort->toPlainText().toLatin1();
     const char *portNumberInChar = ba.data();
 
-    int portNumber = (strcmp(portNumberInChar,"")!=0)? atoi(portNumberInChar) : 0;
+    int portNumber = (portNumberInChar != "")? atoi(portNumberInChar) : 0;
 
-    if( songPath != "" &&  ip!= "" && portNumber != 0 && ui->cBRemotaMnt->isChecked() && nameRemote != "")
+
+     std::cout << "songPath : " + songPath.toStdString() << std::endl;
+    std::cout << "ip : " + ip.toStdString() << std::endl;
+    std::cout << "nameRemote : " + nameRemote.toStdString() << std::endl;
+    if( songPath != "" &&  ip!= "" && portNumber != 0  && nameRemote != "")
     {
         names.append(nameRemote);
         ui->listWidget->addItem(nameRemote + " " + ip + ":" + QString::number(portNumber));
@@ -174,3 +178,10 @@ void MainWindow::on_volumeSlider_sliderPressed()
     const char *Alsacmd = bb.data();
     system(Alsacmd);
 }
+
+
+
+
+
+
+

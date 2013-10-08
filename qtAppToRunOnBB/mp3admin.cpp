@@ -188,7 +188,7 @@ void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, i
 
     if(isRemote){
         //Poner codigo udp -- parametro (nombre puerto ip)
-        printf("ip: %s \n", "Entro con UDP");
+        printf(" %s \n", "Entro con UDP");
 
         GMainLoop *loop;
 
