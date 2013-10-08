@@ -7,6 +7,8 @@
 #include <QMessageBox>
 
 
+mp3Admin* _mp3Admin = new mp3Admin;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -29,7 +31,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::OnSelectSong()
+void MainWindow::on_BtnSelectSong_clicked()
 {
     QString path = QFileDialog::getOpenFileName(this, tr("Open File"),
                                                      "/home",
@@ -46,37 +48,9 @@ void MainWindow::OnSelectSong()
     dir.setNameFilters(filter);       //Se filtran los archivos mp3
     QFileInfoList list = dir.entryInfoList();   // lista los archivos
     _mp3Admin->setPathList(list);
-
 }
 
-void MainWindow::on_BtnPrev_clicked()
-{
-    ChangeSongPath(false);
-}
-
-void MainWindow::on_BtnNext_clicked()
-{
-    ChangeSongPath(true);
-}
-
-void MainWindow::ChangeSongPath(bool isNext)
-{
-    QString songPath = ui->TextPath->toPlainText();
-
-    QString newSongPath = (isNext)? _mp3Admin->getNextPath(songPath) : _mp3Admin->getPreviewPath(songPath);
-
-    if(newSongPath != "END"){
-        ui->TextPath->setText(newSongPath);
-    }
-    else
-    {
-        QMessageBox Msgbox;
-        Msgbox.setText("No hay mas archivos...");
-        Msgbox.exec();
-    }
-}
-
-void MainWindow::OnBtnPlayStopPressed()
+void MainWindow::on_BtnPlayStop_clicked()
 {
     // Obtener el indice seleccionado
     QModelIndex m_activedIndex = ui->listWidget->currentIndex();
@@ -113,6 +87,33 @@ void MainWindow::OnBtnPlayStopPressed()
     {
          g_print ("Entra a remoto\n");
         _mp3Admin->stopRemoteSong(selectedIndex - 1);
+    }
+}
+
+void MainWindow::on_BtnPrev_clicked()
+{
+    ChangeSongPath(false);
+}
+
+void MainWindow::on_BtnNext_clicked()
+{
+    ChangeSongPath(true);
+}
+
+void MainWindow::ChangeSongPath(bool isNext)
+{
+    QString songPath = ui->TextPath->toPlainText();
+
+    QString newSongPath = (isNext)? _mp3Admin->getNextPath(songPath) : _mp3Admin->getPreviewPath(songPath);
+
+    if(newSongPath != "END"){
+        ui->TextPath->setText(newSongPath);
+    }
+    else
+    {
+        QMessageBox Msgbox;
+        Msgbox.setText("No hay mas archivos...");
+        Msgbox.exec();
     }
 }
 
@@ -159,7 +160,7 @@ void MainWindow::on_BtnAddRemote_clicked()
     int portNumber = (portNumberInChar != "")? atoi(portNumberInChar) : 0;
 
 
-     std::cout << "songPath : " + songPath.toStdString() << std::endl;
+    std::cout << "songPath : " + songPath.toStdString() << std::endl;
     std::cout << "ip : " + ip.toStdString() << std::endl;
     std::cout << "nameRemote : " + nameRemote.toStdString() << std::endl;
     if( songPath != "" &&  ip!= "" && portNumber != 0  && nameRemote != "")
@@ -178,10 +179,4 @@ void MainWindow::on_volumeSlider_sliderPressed()
     const char *Alsacmd = bb.data();
     system(Alsacmd);
 }
-
-
-
-
-
-
 

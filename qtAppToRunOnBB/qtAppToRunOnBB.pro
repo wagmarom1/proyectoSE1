@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2013-09-30T21:22:16
+# Project created by QtCreator 2013-10-07T23:18:56
 #
 #-------------------------------------------------
 
@@ -8,11 +8,11 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += link_pkgconfig
-PKGCONFIG += gstreamer-0.10
-
 TARGET = qtAppToRunOnBB
 TEMPLATE = app
+
+CONFIG += link_pkgconfig
+PKGCONFIG += gstreamer-0.10
 
 
 SOURCES += main.cpp\

@@ -6,58 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>821</width>
-    <height>662</height>
+    <width>846</width>
+    <height>655</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTextEdit" name="TextPath">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>70</y>
-      <width>541</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="BtnSelectSong">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>80</y>
-      <width>191</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>22</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Select Song</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="LabelTile">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>10</y>
+      <x>180</x>
+      <y>20</y>
       <width>411</width>
       <height>51</height>
      </rect>
@@ -78,53 +39,11 @@
      <string>BB MP3 player</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="BtnPrev">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>500</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>28</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>&lt;&lt; Last</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="BtnPlayStop">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>330</y>
-      <width>221</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>28</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Play/Stop</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="BtnNext">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>500</y>
+      <x>570</x>
+      <y>530</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -141,11 +60,51 @@
      <string>Next &gt;&gt;</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pauseButton">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>440</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pause</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="volumeSlider">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>350</y>
+      <width>29</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
    <widget class="QTextEdit" name="TextIp">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>190</y>
+      <x>10</x>
+      <y>220</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -162,8 +121,8 @@
    <widget class="QTextEdit" name="TextPort">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>190</y>
+      <x>200</x>
+      <y>220</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -180,8 +139,8 @@
    <widget class="QLabel" name="LabelTile_2">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>190</y>
+      <x>180</x>
+      <y>220</y>
       <width>21</width>
       <height>31</height>
      </rect>
@@ -201,109 +160,11 @@
      <string>:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pauseButton">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>410</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>24</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Pause</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>60</y>
-      <width>821</width>
-      <height>671</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../qtAppToRunOnBB-build-desktop-Qt_4_8_1_in_PATH__System__Release/BackGroundImage.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="listWidget">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>310</y>
-      <width>411</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="TextName">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>190</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-   </widget>
-   <widget class="QLabel" name="LabelTile_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>150</y>
-      <width>101</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>FreeMono</family>
-      <pointsize>11</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>ip</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="LabelTile_4">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>150</y>
+      <x>200</x>
+      <y>180</y>
       <width>81</width>
       <height>51</height>
      </rect>
@@ -324,11 +185,65 @@
      <string>port</string>
     </property>
    </widget>
+   <widget class="QTextEdit" name="TextName">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>220</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>330</y>
+      <width>66</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string>VOLUME</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="TextPath">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>541</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+   </widget>
    <widget class="QLabel" name="LabelTile_5">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>150</y>
+      <x>310</x>
+      <y>180</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -349,11 +264,96 @@
      <string>name</string>
     </property>
    </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>340</y>
+      <width>411</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BtnPrev">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>530</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>&lt;&lt; Last</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BtnPlayStop">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>360</y>
+      <width>221</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Play/Stop</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LabelTile_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>180</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>FreeMono</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>ip</string>
+    </property>
+   </widget>
    <widget class="QPushButton" name="BtnAddRemote">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>180</y>
+      <x>450</x>
+      <y>210</y>
       <width>171</width>
       <height>51</height>
      </rect>
@@ -370,11 +370,32 @@
      <string>Add Remote</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="BtnSelectSong">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>110</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>22</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Select Song</string>
+    </property>
+   </widget>
    <widget class="QLabel" name="LabelTile_6">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>20</y>
       <width>411</width>
       <height>51</height>
      </rect>
@@ -395,70 +416,13 @@
      <string/>
     </property>
    </widget>
-   <widget class="QSlider" name="volumeSlider">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>320</y>
-      <width>29</width>
-      <height>160</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>1</number>
-    </property>
-    <property name="maximum">
-     <number>100</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>300</y>
-      <width>66</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <italic>true</italic>
-     </font>
-    </property>
-    <property name="text">
-     <string>VOLUME</string>
-    </property>
-   </widget>
-   <zorder>label</zorder>
-   <zorder>TextPath</zorder>
-   <zorder>BtnSelectSong</zorder>
-   <zorder>LabelTile</zorder>
-   <zorder>BtnPrev</zorder>
-   <zorder>BtnPlayStop</zorder>
-   <zorder>BtnNext</zorder>
-   <zorder>TextIp</zorder>
-   <zorder>TextPort</zorder>
-   <zorder>LabelTile_2</zorder>
-   <zorder>pauseButton</zorder>
-   <zorder>listWidget</zorder>
-   <zorder>TextName</zorder>
-   <zorder>LabelTile_3</zorder>
-   <zorder>LabelTile_4</zorder>
-   <zorder>LabelTile_5</zorder>
-   <zorder>BtnAddRemote</zorder>
-   <zorder>LabelTile_6</zorder>
-   <zorder>volumeSlider</zorder>
-   <zorder>label_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>821</width>
+     <width>846</width>
      <height>25</height>
     </rect>
    </property>
@@ -475,42 +439,5 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections>
-  <connection>
-   <sender>BtnSelectSong</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>OnSelectSong()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>600</x>
-     <y>148</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>418</x>
-     <y>201</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>BtnPlayStop</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>OnBtnPlayStopPressed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>470</x>
-     <y>411</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>269</x>
-     <y>305</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
- <slots>
-  <slot>OnSelectSong()</slot>
-  <slot>OnBtnPlayStopPressed()</slot>
- </slots>
+ <connections/>
 </ui>

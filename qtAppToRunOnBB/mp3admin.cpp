@@ -298,5 +298,3 @@ void mp3Admin::playStopSong(bool isRemote, QString actualSongPath, QString ip, i
             }
     }
 }
-
-

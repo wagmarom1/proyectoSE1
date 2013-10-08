@@ -12,7 +12,7 @@ class mp3Admin
 
     public:
 
-        QFileInfoList _pathList; //
+
         static bool _play;
 
         mp3Admin();
@@ -21,7 +21,7 @@ class mp3Admin
         void setPlayFlag(bool value);
         void pauseLocalSong();
         void pauseRemoteSong(int indexPipeline);
-        void stopRemoteSong(int indexPipeline);       
+        void stopRemoteSong(int indexPipeline);
 
         void setPathList(QFileInfoList list);
         QFileInfoList getPathList();
@@ -30,7 +30,7 @@ class mp3Admin
 
 
     private:
-
+        QFileInfoList _pathList; //
         GstElement *pipelineLocal;
         QVector<GstElement**> listPipelines;
         static gboolean bus_call (GstBus *bus, GstMessage *msg, gpointer data);
