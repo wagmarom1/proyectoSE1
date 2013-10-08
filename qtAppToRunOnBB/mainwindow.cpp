@@ -8,6 +8,8 @@
 
 
 mp3Admin* _mp3Admin = new mp3Admin;
+QString ImagePath;
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->move(0,0);
     //Set some graphical details
-    ui->LabelTile->setText("<font color='green'>BB MP3 player</font>");
     ui->listWidget->addItem("Local");
     ui->volumeSlider->setValue(50);
     names.append("Local");
@@ -24,6 +25,15 @@ MainWindow::MainWindow(QWidget *parent) :
     system("amixer sset 'Headset' 2 ");
     system("amixer sset 'HeadsetL Mixer AudioL1' on");
     system("amixer sset 'HeadsetL Mixer AudioR1' on");
+
+    QStringList ImagePathSplit; ImagePathSplit << "<img src='" << PROJECT_PATH << "/Images/";
+    ImagePath = ImagePathSplit.join("");
+
+    ui->AddRemoteLabel->setText(ImagePath + "add.png'/><br>" );
+    ui->StopPlaylabel->setText(ImagePath + "play.png'/><br>");
+    ui->PauseLabel->setText(ImagePath + "pause.png'/><br>");
+    ui->SelectSongLabel->setText(ImagePath + "search.png'/><br>");
+    ui->BackGndLabel->setText(ImagePath + "bg3.jpeg'/><br>");
 }
 
 MainWindow::~MainWindow()
@@ -66,20 +76,23 @@ void MainWindow::on_BtnPlayStop_clicked()
 
         if(_mp3Admin->getPlayFlag()){
             // haga el stop
-             _mp3Admin->setPlayFlag(false); //El timeout_callback? detiene la cancion
-             g_print ("STOP\n");
+            ui->StopPlaylabel->setText(ImagePath + "play.png'/><br>");
+            _mp3Admin->setPlayFlag(false); //El timeout_callback? detiene la cancion
+            g_print ("STOP\n");
         }
         else
         {
             //haga play
 
-            g_print ("PLAY LOCAL\n");
             QString songPath = ui->TextPath->toPlainText();
 
             if(songPath != "")
             {
+                ui->StopPlaylabel->setText(ImagePath + "stop.png'/><br>");
                 _mp3Admin->setPlayFlag(true);
                 _mp3Admin->playStopSong(false, songPath, "", 0);  // Normal Local playing
+                g_print ("PLAY LOCAL\n");
+
             }
         }
     }
@@ -159,10 +172,6 @@ void MainWindow::on_BtnAddRemote_clicked()
 
     int portNumber = (portNumberInChar != "")? atoi(portNumberInChar) : 0;
 
-
-    std::cout << "songPath : " + songPath.toStdString() << std::endl;
-    std::cout << "ip : " + ip.toStdString() << std::endl;
-    std::cout << "nameRemote : " + nameRemote.toStdString() << std::endl;
     if( songPath != "" &&  ip!= "" && portNumber != 0  && nameRemote != "")
     {
         names.append(nameRemote);

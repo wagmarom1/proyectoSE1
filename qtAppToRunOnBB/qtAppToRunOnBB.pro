@@ -14,6 +14,7 @@ TEMPLATE = app
 CONFIG += link_pkgconfig
 PKGCONFIG += gstreamer-0.10
 
+DEFINES += PROJECT_PATH=\"\\\"$$PWD\\\"\"
 
 SOURCES += main.cpp\
         mainwindow.cpp \
