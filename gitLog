@@ -1,0 +1,269 @@
+commit 3b2dc64ca405b19ff2f690a90c47cd14e67d771f
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Wed Oct 9 00:09:27 2013 -0600
+
+    interfaz de compu remota
+
+commit 210a149a4c3d160f7222c618c1cfd54738f0fa05
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Tue Oct 8 20:57:36 2013 -0600
+
+    interfaz escalada + pequeña, añadido interfaz para pc remota
+
+commit 6866e0551285e060755530a105c7a22b9d754f6d
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Tue Oct 8 02:47:12 2013 -0600
+
+    1) Sin error de -program unspected finished- 2) Con interfaz chaneada
+
+commit 96560c28b5d7b7ea3c189509c2b5f08d9357755b
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Oct 7 23:47:39 2013 -0600
+
+    Version sin error de -program unspected finished-
+
+commit 0b8534004e2f65689d85e9b4736df0c52f177886
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Oct 7 21:03:25 2013 -0600
+
+    cambio en interfaz
+
+commit fb34d162f3ffa5d589bf6e5dd4a9cd77e70618a7
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Oct 7 12:50:33 2013 -0600
+
+    Interfaz con gstreamer, pause, stop, play
+
+commit 87b1a41509bcece774e15572d5b92401058c7e88
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Oct 7 10:36:19 2013 -0600
+
+    agregado de logica de next y preview en la interfaz
+
+commit a7f3aab56f9663c1357dc1b0113d65cae2bcf3d2
+Author: wil <wil@wil-VirtualBox.(none)>
+Date:   Mon Oct 7 09:32:32 2013 -0600
+
+    version 1 de paper
+
+commit 6fd79ea8ef2f8a7be93dca8a3f69faba59b484b0
+Author: wil <wil@wil-VirtualBox.(none)>
+Date:   Sat Oct 5 16:38:54 2013 -0600
+
+    folder para paper
+
+commit 12bad3fa33b6d2d7421079b2a325d34d21f272ce
+Author: wil <wil@wil-VirtualBox.(none)>
+Date:   Sat Oct 5 16:31:00 2013 -0600
+
+    Modificacion wilberth README2
+
+commit 4f1a3b5c463758d7d344a10fb9e89ba597fa64f4
+Author: wil13 <wilberthcespe@gmail.com>
+Date:   Sat Oct 5 15:57:47 2013 -0600
+
+    Update TEST3
+    
+    Wilberh test
+
+commit ba2c1a96e214bd5bdf59979aa4d8f100fe4c4b6a
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Sat Oct 5 15:05:50 2013 -0600
+
+    Agregado de proyecto compilado con arm
+
+commit 8e6e9762e6b1e209b983312863425faa9ed199eb
+Merge: 633c95f c4a610b
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Fri Oct 4 20:27:18 2013 -0600
+
+    Merge branch 'master' of github.com:wagmarom1/proyectoSE1
+
+commit 633c95f543e61dc77e1c4ca36a0bf610e81e5946
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Fri Oct 4 20:24:54 2013 -0600
+
+    Comienzo GUI para BB, con QfileChooser, qt
+
+commit c4a610b5369ccd9d3ba5765c310ebb18b5f922fe
+Author: osvaldo <wjb-s@hotmail.com>
+Date:   Fri Oct 4 20:13:11 2013 -0600
+
+    testElias
+
+commit 246f729487d787902a29a83aaab61dd957afb3a1
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Fri Oct 4 19:46:29 2013 -0600
+
+    Cambio 1
+
+commit fc45423d462b34f567ac252fb6fd59132ef257ce
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Sep 30 22:27:40 2013 -0600
+
+    Qt project added
+
+commit fa6634d3be4fb4ec273565dae74d6dc480300760
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Sat Sep 28 22:15:18 2013 -0600
+
+    Modificacion de README2
+
+commit 71ce7b523e2e32ef2ed109815c6c9416e945e305
+Merge: 3d14da3 01de957
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Sat Sep 28 22:01:10 2013 -0600
+
+    Merge branch 'master' of github.com:wagmarom1/proyectoSE1
+
+commit 3d14da3c744f10f93330abc5e0850ec64907acf0
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Sat Sep 28 21:50:44 2013 -0600
+
+    Agregando README2
+
+commit 01de9578ab7bfde9a06740acc5573dfd4e7c2849
+Author: wagner <wagmarom@gmail.com>
+Date:   Sat Sep 28 20:29:35 2013 -0700
+
+    Initial commit
+
+[1]+  Detenido                git log
+wagmarom@wagner-PC:~/repository/proyectoSE1$ exit
+exit
+Hay trabajos detenidos.
+wagmarom@wagner-PC:~/repository/proyectoSE1$ cat git log >> logDeGit
+cat: git: No existe el archivo o el directorio
+cat: log: No existe el archivo o el directorio
+wagmarom@wagner-PC:~/repository/proyectoSE1$ cat git log
+cat: git: No existe el archivo o el directorio
+cat: log: No existe el archivo o el directorio
+wagmarom@wagner-PC:~/repository/proyectoSE1$ git log 
+commit 3b2dc64ca405b19ff2f690a90c47cd14e67d771f
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Wed Oct 9 00:09:27 2013 -0600
+
+    interfaz de compu remota
+
+commit 210a149a4c3d160f7222c618c1cfd54738f0fa05
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Tue Oct 8 20:57:36 2013 -0600
+
+    interfaz escalada + pequeña, añadido interfaz para pc remota
+
+commit 6866e0551285e060755530a105c7a22b9d754f6d
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Tue Oct 8 02:47:12 2013 -0600
+
+    1) Sin error de -program unspected finished- 2) Con interfaz chaneada
+
+commit 96560c28b5d7b7ea3c189509c2b5f08d9357755b
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Oct 7 23:47:39 2013 -0600
+
+    Version sin error de -program unspected finished-
+
+commit 0b8534004e2f65689d85e9b4736df0c52f177886
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Oct 7 21:03:25 2013 -0600
+
+    cambio en interfaz
+
+commit fb34d162f3ffa5d589bf6e5dd4a9cd77e70618a7
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Oct 7 12:50:33 2013 -0600
+
+    Interfaz con gstreamer, pause, stop, play
+
+commit 87b1a41509bcece774e15572d5b92401058c7e88
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Oct 7 10:36:19 2013 -0600
+
+    agregado de logica de next y preview en la interfaz
+
+commit a7f3aab56f9663c1357dc1b0113d65cae2bcf3d2
+Author: wil <wil@wil-VirtualBox.(none)>
+Date:   Mon Oct 7 09:32:32 2013 -0600
+
+    version 1 de paper
+
+commit 6fd79ea8ef2f8a7be93dca8a3f69faba59b484b0
+Author: wil <wil@wil-VirtualBox.(none)>
+Date:   Sat Oct 5 16:38:54 2013 -0600
+
+    folder para paper
+
+commit 12bad3fa33b6d2d7421079b2a325d34d21f272ce
+Author: wil <wil@wil-VirtualBox.(none)>
+Date:   Sat Oct 5 16:31:00 2013 -0600
+
+    Modificacion wilberth README2
+
+commit 4f1a3b5c463758d7d344a10fb9e89ba597fa64f4
+Author: wil13 <wilberthcespe@gmail.com>
+Date:   Sat Oct 5 15:57:47 2013 -0600
+
+    Update TEST3
+    
+    Wilberh test
+
+commit ba2c1a96e214bd5bdf59979aa4d8f100fe4c4b6a
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Sat Oct 5 15:05:50 2013 -0600
+
+    Agregado de proyecto compilado con arm
+
+commit 8e6e9762e6b1e209b983312863425faa9ed199eb
+Merge: 633c95f c4a610b
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Fri Oct 4 20:27:18 2013 -0600
+
+    Merge branch 'master' of github.com:wagmarom1/proyectoSE1
+
+commit 633c95f543e61dc77e1c4ca36a0bf610e81e5946
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Fri Oct 4 20:24:54 2013 -0600
+
+    Comienzo GUI para BB, con QfileChooser, qt
+
+commit c4a610b5369ccd9d3ba5765c310ebb18b5f922fe
+Author: osvaldo <wjb-s@hotmail.com>
+Date:   Fri Oct 4 20:13:11 2013 -0600
+
+    testElias
+
+commit 246f729487d787902a29a83aaab61dd957afb3a1
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Fri Oct 4 19:46:29 2013 -0600
+
+    Cambio 1
+
+commit fc45423d462b34f567ac252fb6fd59132ef257ce
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Mon Sep 30 22:27:40 2013 -0600
+
+    Qt project added
+
+commit fa6634d3be4fb4ec273565dae74d6dc480300760
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Sat Sep 28 22:15:18 2013 -0600
+
+    Modificacion de README2
+
+commit 71ce7b523e2e32ef2ed109815c6c9416e945e305
+Merge: 3d14da3 01de957
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Sat Sep 28 22:01:10 2013 -0600
+
+    Merge branch 'master' of github.com:wagmarom1/proyectoSE1
+
+commit 3d14da3c744f10f93330abc5e0850ec64907acf0
+Author: wagmarom <wagmarom@gmail.com>
+Date:   Sat Sep 28 21:50:44 2013 -0600
+
+    Agregando README2
+
+commit 01de9578ab7bfde9a06740acc5573dfd4e7c2849
+Author: wagner <wagmarom@gmail.com>
+Date:   Sat Sep 28 20:29:35 2013 -0700
+
