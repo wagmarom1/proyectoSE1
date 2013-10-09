@@ -13,8 +13,6 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-
-
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
@@ -30,15 +28,10 @@ class MainWindow : public QMainWindow
         void on_BtnPlayStop_clicked();
         void on_BtnPrev_clicked();
         void on_BtnNext_clicked();
-
         void on_pauseButton_clicked();
         void on_BtnAddRemote_clicked();
         void on_listWidget_itemSelectionChanged();
-
         void on_volumeSlider_sliderPressed();
-
-
-
 };
 
 #endif // MAINWINDOW_H
