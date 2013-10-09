@@ -11,6 +11,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = qtAppToRunOnRemotePc
 TEMPLATE = app
 
+CONFIG += link_pkgconfig
+PKGCONFIG += gstreamer-0.10
+
+DEFINES += PROJECT_PATH=\"\\\"$$PWD\\\"\"
 
 SOURCES += main.cpp\
         mainwindow.cpp
